@@ -4,7 +4,7 @@
 
 ### 📖 Descrição do Projeto
 
-Descrição aqui...
+Neste projeto, iremos contruir uma biblioteca para o funcionamento correto do sensor BMP280, utilizando o microcontrolador Raspberry Pi Pico (RP2040).
 
 ---
 <p align="center">
