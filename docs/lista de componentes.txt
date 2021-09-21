@@ -19,4 +19,4 @@ R9   10k           R-US_0204/7   0204/7                   RESISTOR, American sym
 R10  10k           R-US_0204/7   0204/7                   RESISTOR, American symbol                                                                     
 R11  10k           R-US_0204/7   0204/7                   RESISTOR, American symbol                                                                     
 U$1  RP2040        RP2040        QFN40P695X695X90-57T320N Check prices                                                                                  
-U1   BMP280        BMP280        XDCR_BMP280              BMP280 Absolute Barometric Pressure Sensor for Battery Powered Devices 2 x 2.5mm Check prices 
+U1   BMP280        BMP280        XDCR_BMP280              BMP280
