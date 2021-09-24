@@ -291,17 +291,3 @@ class BMP280:
         print("value_from_P7: {} {}".format(self._P7, type(self._P7)))
         print("value_from_P8: {} {}".format(self._P8, type(self._P8)))
         print("value_from_P9: {} {}".format(self._P9, type(self._P9)))
-
-def show_message(self):
-        print("value_from_T1: {} {}".format(self.INFO_CONST_T1, type(self.INFO_CONST_T1)))
-        print("value_from_T2: {} {}".format(self.INFO_CONST_T2, type(self.INFO_CONST_T2)))
-        print("value_from_T3: {} {}".format(self.INFO_CONST_T3, type(self.INFO_CONST_T3)))
-        print("value_from_P1: {} {}".format(self._P1, type(self._P1)))
-        print("value_from_P2: {} {}".format(self._P2, type(self._P2)))
-        print("value_from_P3: {} {}".format(self._P3, type(self._P3)))
-        print("value_from_P4: {} {}".format(self._P4, type(self._P4)))
-        print("value_from_P5: {} {}".format(self._P5, type(self._P5)))
-        print("value_from_P6: {} {}".format(self._P6, type(self._P6)))
-        print("value_from_P7: {} {}".format(self._P7, type(self._P7)))
-        print("value_from_P8: {} {}".format(self._P8, type(self._P8)))
-        print("value_from_P9: {} {}".format(self._P9, type(self._P9)))
