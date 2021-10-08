@@ -97,24 +97,6 @@ class BMP280:
         if use_case is None:
             self.use_case(use_case)
 
-    def testing_load_c(self):
-        self.INFO_CONST_T1 = 27504
-        self.INFO_CONST_T2 = 26435
-        self.INFO_CONST_T3 = -1000
-        self._P1 = 36477
-        self._P2 = -10685
-        self._P3 = 3024
-        self._P4 = 2855
-        self._P5 = 140
-        self._P6 = -7
-        self._P7 = 15500
-        self._P8 = -14600
-        self._P9 = 6000
-
-    def testing_load_d(self):
-        self.INFO_CONST_t_raw = 519888
-        self._p_raw = 415148
-
     def _write(self, addr, b_arr):
         if not type(b_arr) is bytearray:
             b_arr = bytearray([b_arr])
@@ -241,28 +223,6 @@ class BMP280:
         assert 0 <= v <= 3
         self._write_bits(_value_from_BMP280_REGISTER_CONTROL, v, 2)
 
-    @property
-    def is_measuring(self):
-        return bool(self._read_bits(_value_from_BMP280_REGISTER_STATUS, 1, 3))
-
-    @property
-    def is_updating(self):
-        return bool(self._read_bits(_value_from_BMP280_REGISTER_STATUS, 1))
-
-    @property
-    def chip_id(self):
-        return self._read(_value_from_BMP280_REGISTER_ID, 2)
-
-    @property
-    def in_normal_mode(self):
-        return self.power_mode == value_from_BMP280_POWER_NORMAL
-
-    def force_measure(self):
-        self.power_mode = value_from_BMP280_POWER_FORCED
-
-    def normal_measure(self):
-        self.power_mode = value_from_BMP280_POWER_NORMAL
-
     def sleep(self):
         self.power_mode = value_from_BMP280_POWER_SLEEP
 
@@ -278,16 +238,3 @@ class BMP280:
         t_os, p_os, self.TRUTH_read_time_ms = _value_from_BMP280_OS_MATRIX[oss]
         self._write_bits(_value_from_BMP280_REGISTER_CONTROL, p_os + (t_os << 3), 2)
     
-    def show_message(self):
-        print("value_from_T1: {} {}".format(self.INFO_CONST_T1, type(self.INFO_CONST_T1)))
-        print("value_from_T2: {} {}".format(self.INFO_CONST_T2, type(self.INFO_CONST_T2)))
-        print("value_from_T3: {} {}".format(self.INFO_CONST_T3, type(self.INFO_CONST_T3)))
-        print("value_from_P1: {} {}".format(self._P1, type(self._P1)))
-        print("value_from_P2: {} {}".format(self._P2, type(self._P2)))
-        print("value_from_P3: {} {}".format(self._P3, type(self._P3)))
-        print("value_from_P4: {} {}".format(self._P4, type(self._P4)))
-        print("value_from_P5: {} {}".format(self._P5, type(self._P5)))
-        print("value_from_P6: {} {}".format(self._P6, type(self._P6)))
-        print("value_from_P7: {} {}".format(self._P7, type(self._P7)))
-        print("value_from_P8: {} {}".format(self._P8, type(self._P8)))
-        print("value_from_P9: {} {}".format(self._P9, type(self._P9)))

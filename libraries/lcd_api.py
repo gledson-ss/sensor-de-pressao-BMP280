@@ -57,9 +57,6 @@ class LcdApi:
         self.backlight = False
         self.hal_backlight_off()
 
-    def display_cursor(self):
-        self.hal_write_command(self.LCD_ON_CTRL | self.LCD_ON_DISPLAY |
-                               self.LCD_ON_CURSOR)
     def skip_info(self, cursor_x, cursor_y):
         self.cursor_x = cursor_x
         self.cursor_y = cursor_y
@@ -73,15 +70,9 @@ class LcdApi:
     def no_cursor(self):
         self.hal_write_command(self.LCD_ON_CTRL | self.LCD_ON_DISPLAY)
 
-    def blink_cursor_on(self):
-        self.hal_write_command(self.LCD_ON_CTRL | self.LCD_ON_DISPLAY |
-                               self.LCD_ON_CURSOR | self.LCD_ON_BLINK)
-
     def blink_cursor_off(self):
         self.hal_write_command(self.LCD_ON_CTRL | self.LCD_ON_DISPLAY |
                                self.LCD_ON_CURSOR)
-
-    
 
     def putchar(self, char):
         if char == '\n':
@@ -105,18 +96,6 @@ class LcdApi:
     def putstr(self, string):
         for char in string:
             self.putchar(char)
-
-    def custom_char(self, location, charmap):
-        location &= 0x7
-        self.hal_write_command(self.LCD_CGRAM | (location << 3))
-        self.hal_sleep_us(40)
-        for i in range(8):
-            self.hal_write_data(charmap[i])
-            self.hal_sleep_us(40)
-        self.skip_info(self.cursor_x, self.cursor_y)
-
-    def hal_sleep_us(self, usecs):
-        time.sleep_us(usecs)
 
     def hal_backlight_on(self):
         pass

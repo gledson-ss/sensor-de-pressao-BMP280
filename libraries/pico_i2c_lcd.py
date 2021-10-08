@@ -3,7 +3,6 @@ import utime
 from lcd_api import LcdApi
 from machine import I2C
 
-
 SHIFT_BACKLIGHT = 3  
 SHIFT_DATA      = 4  
 MASK_RS = 0x01       
