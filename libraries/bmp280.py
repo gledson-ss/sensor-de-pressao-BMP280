@@ -45,12 +45,8 @@ _value_from_BMP280_OS_MATRIX = [
     [value_from_BMP280_PRES_OS_16, value_from_BMP280_TEMP_OS_2, 44]
 ]
 
-value_from_BMP280_CASE_HANDHELD_LOW = const(0)
 value_from_BMP280_CASE_HANDHELD_DYN = const(1)
 value_from_BMP280_CASE_WEATHER = const(2)
-value_from_BMP280_CASE_FLOOR = const(3)
-value_from_BMP280_CASE_DROP = const(4)
-value_from_BMP280_CASE_INDOOR = const(5)
 
 _value_from_BMP280_CASE_MATRIX = [
     [value_from_BMP280_POWER_NORMAL, value_from_BMP280_OS_ULTRAHIGH, value_from_BMP280_IIR_FILTER_4, value_from_BMP280_STANDBY_62_5],
@@ -61,9 +57,7 @@ _value_from_BMP280_CASE_MATRIX = [
     [value_from_BMP280_POWER_NORMAL, value_from_BMP280_OS_ULTRAHIGH, value_from_BMP280_IIR_FILTER_16, value_from_BMP280_STANDBY_0_5]
 ]
 
-_value_from_BMP280_REGISTER_ID = const(0xD0)
 _value_from_BMP280_REGISTER_RESET = const(0xE0)
-_value_from_BMP280_REGISTER_STATUS = const(0xF3)
 _value_from_BMP280_REGISTER_CONTROL = const(0xF4)
 _value_from_BMP280_REGISTER_CONFIG = const(0xF5)  
 
