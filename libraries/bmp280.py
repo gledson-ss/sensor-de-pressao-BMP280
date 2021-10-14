@@ -146,6 +146,14 @@ class BMP280:
             self._p = p / 256.0
         return self._p
 
+
+    def altitude_IBF(self, pressure):
+        local_pressure = pressure    
+        sea_level_pressure = 1013.25 
+        pressure_ratio = local_pressure / sea_level_pressure
+        altitude = 44330*(1-(pressure_ratio**(1/5.255)))
+        return altitude
+
     def reset(self):
         self._write(_value_from_BMP280_REGISTER_RESET, 0xB6)
 

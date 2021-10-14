@@ -9,7 +9,6 @@ i2c = I2C(0, sda = Pin(0), scl = Pin(1), freq = 400000)
 lcd = I2cLcd(i2c, 0x27, 2, 16)
 
 
-ERROR = -3 
 sclPin = Pin(1) 
 sdaPin = Pin(0) 
 i2c_object = I2C(0,              
@@ -37,21 +36,15 @@ bmp280_object.press_os = value_from_BMP280_TEMP_OS_4
 bmp280_object.standby = value_from_BMP280_STANDBY_250
 bmp280_object.iir = value_from_BMP280_IIR_FILTER_2
 
-
-def altitude_IBF(pressure):
-    local_pressure = pressure    
-    sea_level_pressure = 1013.25 
-    pressure_ratio = local_pressure / sea_level_pressure
-    altitude = 44330*(1-(pressure_ratio**(1/5.255)))
-    return altitude
+mostrador = 0
 
 while True:
     temperature_c = bmp280_object.temperature 
-    temperature_k = temperature_c + 273.15
+
     pressure = bmp280_object.pressure  
-    pressure_hPa = ( pressure * 0.01 ) + ERROR 
-    altitude = altitude_IBF(pressure_hPa)
-    press = "{:.2f}".format(pressure_hPa)
+    altitude = bmp280_object.altitude_IBF(pressure)
+
+    press = "{:.2f}".format(pressure)
     i_alti = "{:.2f}".format(altitude)
 
     lcd.skip_info(0,0)
@@ -59,19 +52,21 @@ while True:
     lcd.putstr(str(temperature_c))
     lcd.putstr(" C")
 
-    lcd.skip_info(0,1)
-    lcd.putstr("                ")
-    lcd.skip_info(0,1)
-    lcd.putstr("Alt: ")
-    lcd.putstr(str (i_alti))
-    lcd.putstr(" mtr")
-    sleep(3)
+    if mostrador:
+        lcd.skip_info(0,1)
+        lcd.putstr("                ")
+        lcd.skip_info(0,1)
+        lcd.putstr("Press.:")
+        lcd.putstr(str (press))
+        lcd.putstr(" hPa")
+    else:
+        lcd.skip_info(0,1)
+        lcd.putstr("                ")
+        lcd.skip_info(0,1)
+        lcd.putstr("Alt: ")
+        lcd.putstr(str (i_alti))
+        lcd.putstr(" mtr")
 
 
-    lcd.skip_info(0,1)
-    lcd.putstr("                ")
-    lcd.skip_info(0,1)
-    lcd.putstr("Press.:")
-    lcd.putstr(str (press))
-    lcd.putstr(" hPa")
     sleep(3)
+    mostrador = not mostrador
